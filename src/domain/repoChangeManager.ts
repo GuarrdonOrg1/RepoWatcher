@@ -18,7 +18,7 @@ export default class RepoChangeManager {
     public async HandleRepoAction(request: UpdateActionRequests.UpdateRepoActionRequest): Promise<string> {
 
         //invalid arguments
-        if (!request || !request.action || !request.fullRepoName || !request.orgReposUrl)
+        if (!request || !request.action || !request.fullRepoName || !request.orgReposUrl || !request.changeDate)
             throw new Errors.InvalidHandleRepoActionArgumentsError(request);
 
         //only supported actions should continue
@@ -86,7 +86,7 @@ export default class RepoChangeManager {
         if (!EnvironmentInfo.securityToken)
             throw new Errors.InvalidIssueConfigurationError();
         //invalid arguments
-        if (!request || !request.action || !request.fullRepoName || !request.issueUrl || !request.orgReposUrl)
+        if (!request || !request.action || !request.fullRepoName || !request.issueUrl || !request.changeDate)
             throw new Errors.InvalidHandleRepoActionArgumentsError(request);
 
         //build issue content
