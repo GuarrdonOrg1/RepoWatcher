@@ -40,7 +40,7 @@ In order to utilize this web service application, the following perquisites must
 Organization
   * Utilize an existing organization or create a new one
     * --steps
-  * Designate a repository to hold the pushed change issues (note the full organization and repository name like org/repo.
+  * Designate a repository to hold the pushed change issues (note the full organization and repository name like org/repo).
   * Reference
     * [Create Organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/)
     * [Create Repository](https://help.github.com/articles/creating-a-new-repository/)
@@ -58,7 +58,7 @@ WebHook
     * Review the [Creating Webhook Help Page](https://developer.github.com/webhooks/creating/#setting-up-a-webhook) for additional information. 
 
 Web Service
-  * The web service is a node application hosted by a Docker container.  By default, the web service listens on HTTP port 3005.  However, you can expose any port you would like and route it through the container configuration.
+  * The web service is a node application hosted by a Docker container.  By default, the web service listens on HTTP port _3005_.  However, you can expose any port you would like and route it through the container configuration.
   * In addition to the port configuration, environment variables should be set to properly configure the service.
     * **ACTIONS** -Used to authorize which GitHub notification actions should be handled by the web service.  Pipe delimit (no spaces) the actions.  Available actions can be found at [Repository Events](https://developer.github.com/v3/activity/events/types/#repositoryevent)
 	ACTIONS = deleted|created 
@@ -70,7 +70,7 @@ Web Service
 	AUDIT_USER=@Guarrdon
   * Docker
     * There are a few cloud providers and management tools to choose to support your Docker instance (AWS EC2, Kubernetes, Portainer, …).  Please review documentation specific to those platforms to execute the web service container.
-    * The Docker image is currently published to the public Docker Hub at guarrdon/githubchangehandler.
+    * The Docker image is currently published to the public Docker Hub at **guarrdon/githubchangehandler**.
     * When using a separate manage tool, the required environment variable are typically set from the user interface or in a .yaml configuration file.
     * To run your container directly from the Docker console, run the following command.  Note, the environment variables - denoted with -e - will need to be configured with the organization specific information.  Additionally, this example supports both the deleted and created actions.
 ```{r, engine='bash', docker_run}
