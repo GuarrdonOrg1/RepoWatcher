@@ -39,28 +39,28 @@ In order to utilize this web service application, the following perquisites must
 
 Organization
   * Utilize an existing organization or create a new one
-    * [steps]
+    * --steps
   * Designate a repository to hold the pushed change issues (note the full organization and repository name like org/repo.
   * Reference
-    * [https://help.github.com/articles/creating-a-new-organization-from-scratch/]
-    * [https://help.github.com/articles/creating-a-new-repository/]
+    * [Create Organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/)
+    * [Create Repository](https://help.github.com/articles/creating-a-new-repository/)
 
 API Access
   * In order to communicate with the GitHub REST API, setup and obtain an API access token which will be utilized in the web service.  This allows GitHub to know it is communicating with an authorized user.
-    * [steps] 
+    * --steps 
   * Reference
-    * [https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/]
+    * [Access Tokens](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 
 WebHook
   * In order to receive push notifications from GitHub, a webhook must be enabled within the organization.  This webhook contains the HTTP REST entry point for the web service to support the notification.  During configuration, you will be able to select which events will trigger the webhook integration.  For this web service, the Repository events are required.
-    * [steps]
+    * --steps
   * Reference
-    * Review the (Creating Webhook Help Page)[https://developer.github.com/webhooks/creating/#setting-up-a-webhook] for additional information. 
+    * Review the [Creating Webhook Help Page](https://developer.github.com/webhooks/creating/#setting-up-a-webhook) for additional information. 
 
 Web Service
   * The web service is a node application hosted by a Docker container.  By default, the web service listens on HTTP port 3005.  However, you can expose any port you would like and route it through the container configuration.
   * In addition to the port configuration, environment variables should be set to properly configure the service.
-    * **ACTIONS** -Used to authorize which GitHub notification actions should be handled by the web service.  Pipe delimit (no spaces) the actions.  Available actions can be found at https://developer.github.com/v3/activity/events/types/#repositoryevent
+    * **ACTIONS** -Used to authorize which GitHub notification actions should be handled by the web service.  Pipe delimit (no spaces) the actions.  Available actions can be found at [Repository Events](https://developer.github.com/v3/activity/events/types/#repositoryevent)
 	ACTIONS = deleted|created 
     * **AUDIT_REPO** - The full repository name to the GitHub organization repository that will be store the notification issues.  This found in the Configuration-->Organization steps above.
 	AUDIT_REPO = GuarrdonOrg1/DeleteHistory 
