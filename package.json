@@ -4,7 +4,8 @@
   "description": "Watch Github organization repositories for changes and push notification issues",
   "main": "/dist/server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prepare": "tsc"
   },
   "repository": {
     "type": "git",
