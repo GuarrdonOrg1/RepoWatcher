@@ -5,6 +5,8 @@
   "main": "/dist/server.js",
   "scripts": {
     "test": "jest",
+    "grunt": "grunt",
+    "start": "node ./dist/server",
     "prepare": "tsc"
   },
   "repository": {
