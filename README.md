@@ -59,8 +59,8 @@ WebHook
 
 Web Service
   * The web service is a node application hosted by a Docker container.  By default, the web service listens on HTTP port _3005_.  However, you can expose any port you would like and route it through the container configuration.
-  * In addition to the port configuration, environment variables should be set to properly configure the service.
-    * **ACTIONS** -Used to authorize which GitHub notification actions should be handled by the web service.  Pipe delimit (no spaces) the actions.  Available actions can be found at [Repository Events](https://developer.github.com/v3/activity/events/types/#repositoryevent)
+  * In addition to the port configuration, environment variables should be set to properly configure the service.  For convenience, there is a .env file that is included in the project which can be used during development, however, during production, the environment variables should be injected into the Node process from the command line or some other container configuration.
+    * **ACTIONS** - Used to authorize which GitHub notification actions should be handled by the web service.  Pipe delimit (no spaces) the actions.  Available actions can be found at [Repository Events](https://developer.github.com/v3/activity/events/types/#repositoryevent)
 	ACTIONS = deleted|created 
     * **AUDIT_REPO** - The full repository name to the GitHub organization repository that will be store the notification issues.  This found in the Configuration-->Organization steps above.
 	AUDIT_REPO = GuarrdonOrg1/DeleteHistory 
@@ -69,9 +69,8 @@ Web Service
     * **AUDIT_USER**  - Any users to mention in the body of the issue 
 	AUDIT_USER=@Guarrdon
   * Docker
-    * There are a few cloud providers and management tools to choose to support your Docker instance (AWS EC2, Kubernetes, Portainer, …).  Please review documentation specific to those platforms to execute the web service container.
-    * The Docker image is currently published to the public Docker Hub at **guarrdon/githubchangehandler**.
-    * When using a separate manage tool, the required environment variable are typically set from the user interface or in a .yaml configuration file.
+    * While docker is not required to host the web service, the docker image has been uploaded to the public Docker Hub at **guarrdon/githubchangehandler** fro convenience.  Those familiar with Docker and the deployment benefits can utilize the docker command below to load.  Alternatively, the web service Node project can be run manually - just ensure the environment variables are injected into the process.
+    * There are a few cloud providers and management tools to choose to support your Docker instance (AWS EC2, Kubernetes, Portainer, …).  Please review documentation specific to those platforms to execute the web service container.  When using a separate manage tool, the required environment variable are typically set from the user interface or in a .yaml configuration file.
     * To run your container directly from the Docker console, run the following command.  Note, the environment variables - denoted with -e - will need to be configured with the organization specific information.  Additionally, this example supports both the deleted and created actions.
 ```{r, engine='bash', docker_run}
 docker run --name githubchangehandler -d -e ACTIONS="deleted|created" -e AUDIT_REPO="GuarrdonOrg1/DeleteHistory" -e SECURITY_TOKEN="aaa1bbb2ccc3ddd4eee5fff6ggg7" -e AUDIT_USER="@Guarrdon" -p 3005:3005 guarrdon/githubchangehandler 
