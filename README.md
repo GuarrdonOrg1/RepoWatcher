@@ -37,37 +37,47 @@ In order to utilize this web service application, the following perquisites must
 
 ### Installing
 
- * Organizations - Utilize an existing organization or create a new one
+#### Organizations
+
+Organizations - Utilize an existing organization or create a new one
     
-    1. Log into your GitHub account.
-    2. After login, on the header bar of GitHub.com, click on the _+_ symbol, providing a menu to create a new organization.
-    3. Enter a unique organization name, a billing email, and choose a plan that best meets your organization requirements.
-    4. Click the _Create organization_ button at the bottom to complete.
+  1. Log into your GitHub account.
+  2. After login, on the header bar of GitHub.com, click on the _+_ symbol, providing a menu to create a new organization.
+  3. Enter a unique organization name, a billing email, and choose a plan that best meets your organization requirements.
+  4. Click the _Create organization_ button at the bottom to complete.
 
-  * Organization Repositories
+Organization Repositories
 
-    1. On the main organization page (also found at https://github.com/<Organization>) click the _New_ button to begin creating repositories.
-    2. Enter an organizational unique repository name, description, and choose if it will be a public or private repository.
-    3. After entering all options, click the _Create repository_ button at the bottom to complete.
+  1. On the main organization page (also found at https://github.com/<Organization>) click the _New_ button to begin creating repositories.
+  2. Enter an organizational unique repository name, description, and choose if it will be a public or private repository.
+  3. After entering all options, click the _Create repository_ button at the bottom to complete.
       
-  * Designate a repository to hold the pushed change issues (note the full organization and repository name like org/repo).
-  * Reference
-    * [Create Organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/)
-    * [Create Repository](https://help.github.com/articles/creating-a-new-repository/)
+* Designate a repository to hold the pushed change issues (note the full organization and repository name like org/repo).
+
+Reference
+  * [Create Organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/)
+  * [Create Repository](https://help.github.com/articles/creating-a-new-repository/)
+
+#### API Access
+
+In order to communicate with the GitHub REST API, setup and obtain an API access token which will be utilized in the web service.  This allows GitHub to know it is communicating with an authorized user.
     
-API Access
-  * In order to communicate with the GitHub REST API, setup and obtain an API access token which will be utilized in the web service.  This allows GitHub to know it is communicating with an authorized user.
-    * --steps 
+  1. Log into your GitHub organizational administrator account.
+  2. Under profile settings, choose developer settings.
+  3. Generate new token (you'll need re-validate your password at this point). 
+  3. Enter a description for the token (why it is being used) and choose the scope for the token.  For this web service, choose _public_repo_ and notifications.  The service will just be listening for deleted changes, but will not actually be doing the repository deletion.
+  4. Click the _Generate token_ button at the bottom to complete.  **Save the generated token immediately - You can't retrieve it later!**  It will be used in the later configuration.
+    
   * Reference
     * [Access Tokens](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 
-WebHook
+#### WebHook
   * In order to receive push notifications from GitHub, a webhook must be enabled within the organization.  This webhook contains the HTTP REST entry point for the web service to support the notification.  During configuration, you will be able to select which events will trigger the webhook integration.  For this web service, the Repository events are required.
     * --steps
   * Reference
     * Review the [Creating Webhook Help Page](https://developer.github.com/webhooks/creating/#setting-up-a-webhook) for additional information. 
 
-Web Service
+#### Web Service
   * The web service is a node application hosted by a Docker container.  By default, the web service listens on HTTP port _3005_.  However, you can expose any port you would like and route it through the container configuration.
   * In addition to the port configuration, environment variables should be set to properly configure the service.  For convenience, there is a .env file that is included in the project which can be used during development, however, during production, the environment variables should be injected into the Node process from the command line or some other container configuration.
     * **ACTIONS** - Used to authorize which GitHub notification actions should be handled by the web service.  Pipe delimit (no spaces) the actions.  Available actions can be found at [Repository Events](https://developer.github.com/v3/activity/events/types/#repositoryevent)
