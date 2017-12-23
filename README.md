@@ -110,7 +110,7 @@ spec:
       value: "@Guarrdon"
 ```
 
-  * To run your container directly from the Docker console, run the following command.  Note, the environment variables - denoted with -e - will need to be configured with the organization specific information.  Additionally, this example supports both the deleted and created actions.
+    * To run your container directly from the Docker console, run the following command.  Note, the environment variables - denoted with -e - will need to be configured with the organization specific information.  Additionally, this example supports both the deleted and created actions.
 
 ```bash
 docker run --name githubchangehandler -d -e ACTIONS="deleted|created" -e AUDIT_REPO="GuarrdonOrg1/DeleteHistory" -e SECURITY_TOKEN="aaa1bbb2ccc3ddd4eee5fff6ggg7" -e AUDIT_USER="@Guarrdon" -p 3005:3005 guarrdon/githubchangehandler 
