@@ -1,6 +1,6 @@
 # RepoWatcher
 
-GitHub organization repository watcher.
+GitHub organization repository watcher.  [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
 The goal of this web service is to support a notification to an GitHub organization administrator when an GitHub organization repository is deleted.  When the required activity takes place, an issue is logged in another configurable repository, containing the activity detail.
 
@@ -14,8 +14,8 @@ The next few sections provide details on creating a valid GitHub environment, en
 
 GitHub
   * GitHub organizations and repositories
-  * GitHub Webhooks - push notification
-  * GitHub REST API v3 - programmatic interface into GitHub 
+  * [GitHub Webhooks](https://developer.github.com/webhooks/creating/) - push notification from GitHub
+  * [GitHub REST API v3](https://developer.github.com/v3/) - programmatic interface into GitHub 
 Web Service
   * [Node.js](https://nodejs.org/en/) - runtime environment (tested v8.1.3, however versions as early as v6.12.2  should function)
   * [Express](https://github.com/expressjs/express) - http web server
@@ -39,7 +39,18 @@ In order to utilize this web service application, the following perquisites must
 
 Organization
   * Utilize an existing organization or create a new one
-    * --steps
+  **
+    Organizations
+    1 Log into your GitHub account.
+    2 After login, on the header bar of GitHub.com, click on the _+_ symbol, providing a menu to create a new organization.
+    3 Enter a unique organization name, a billing email, and choose a plan that best meets your organization requirements.
+    4 Click the _Create organization_ button at the bottom to complete.
+
+    Organization Repositories
+    1 On the main organization page ``(also found at https://github.com/<Organization>)`` click the _New_ button to begin creating repositories.
+    2 Enter an organizational unique repository name, description, and choose if it will be a public or private repository.
+    3 After entering all options, click the _Create repository_ button at the bottom to complete.
+  **
   * Designate a repository to hold the pushed change issues (note the full organization and repository name like org/repo).
   * Reference
     * [Create Organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/)
