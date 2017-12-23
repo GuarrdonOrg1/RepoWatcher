@@ -39,7 +39,6 @@ In order to utilize this web service application, the following perquisites must
 
 Organization
   * Utilize an existing organization or create a new one
-  **
     Organizations
     1 Log into your GitHub account.
     2 After login, on the header bar of GitHub.com, click on the _+_ symbol, providing a menu to create a new organization.
@@ -50,7 +49,6 @@ Organization
     1 On the main organization page ``(also found at https://github.com/<Organization>)`` click the _New_ button to begin creating repositories.
     2 Enter an organizational unique repository name, description, and choose if it will be a public or private repository.
     3 After entering all options, click the _Create repository_ button at the bottom to complete.
-  **
   * Designate a repository to hold the pushed change issues (note the full organization and repository name like org/repo).
   * Reference
     * [Create Organization](https://help.github.com/articles/creating-a-new-organization-from-scratch/)
